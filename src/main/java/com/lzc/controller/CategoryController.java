@@ -37,6 +37,7 @@ public class CategoryController {
 
     /**
      * 菜品信息分页查询
+     *
      * @param page
      * @param pageSize
      * @return
@@ -54,6 +55,20 @@ public class CategoryController {
         categoryService.page(pageInfo, queryWrapper);
         return R.success(pageInfo);
 
+    }
+
+    /**
+     * 根据id删除分类
+     *
+     * @param id
+     * @return
+     */
+    @DeleteMapping
+    public R<String> delete(Long id) {
+        log.info("删除分类，id为:{}", id);
+
+        categoryService.removeById(id);
+        return R.success("分类信息删除成功");
     }
 
 
