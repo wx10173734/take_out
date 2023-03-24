@@ -1,5 +1,6 @@
 package com.lzc.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lzc.dto.DishDto;
 import com.lzc.entity.Dish;
@@ -18,4 +19,12 @@ public interface DishService extends IService<Dish> {
      * @param dishDto
      */
     public void saveWithFlavor(DishDto dishDto);
+
+    /**
+     * 分页查询菜品数据
+     * @param pageInfo
+     * @param dishDtoPage
+     * @param name
+     */
+    public void pageDish(Page<Dish> pageInfo,Page<DishDto> dishDtoPage,String name);
 }
