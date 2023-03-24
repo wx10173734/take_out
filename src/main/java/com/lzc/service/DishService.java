@@ -22,9 +22,25 @@ public interface DishService extends IService<Dish> {
 
     /**
      * 分页查询菜品数据
+     *
      * @param pageInfo
      * @param dishDtoPage
      * @param name
      */
-    public void pageDish(Page<Dish> pageInfo,Page<DishDto> dishDtoPage,String name);
+    public void pageDish(Page<Dish> pageInfo, Page<DishDto> dishDtoPage, String name);
+
+    /**
+     * 根据id查询菜品信息和对应的口味信息
+     *
+     * @param id
+     * @return
+     */
+    public DishDto getByIdWithFlavor(Long id);
+
+
+    /**
+     * 更新菜品表和口味表
+     * @param dishDto
+     */
+    void updateWithFlavor(DishDto dishDto);
 }

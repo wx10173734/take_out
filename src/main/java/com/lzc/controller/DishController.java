@@ -59,7 +59,24 @@ public class DishController {
         //调用分页查询方法
         dishService.pageDish(pageInfo, dishDtoPage, name);
         return R.success(dishDtoPage);
+    }
 
+    /**
+     * 根据id查询菜品信息和对应的口味信息
+     *
+     * @param id
+     * @return
+     */
+    @GetMapping("/{id}")
+    public R<DishDto> get(@PathVariable Long id) {
+        DishDto dishDto = dishService.getByIdWithFlavor(id);
+        return R.success(dishDto);
+    }
 
+    @PutMapping
+    public R<String> update(@RequestBody DishDto dishDto) {
+        log.info(dishDto.toString());
+        dishService.updateWithFlavor(dishDto);
+        return R.success("修改菜品成功");
     }
 }
