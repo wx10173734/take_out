@@ -1,5 +1,6 @@
 package com.lzc.service;
 
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.IService;
 import com.lzc.dto.SetmealDto;
 import com.lzc.entity.Setmeal;
@@ -15,4 +16,11 @@ public interface SetmealService extends IService<Setmeal> {
      * @param setmealDto
      */
     public void saveWithDish(SetmealDto setmealDto);
+
+    /**
+     * 套餐分页查询
+     * @param setmealPage
+     * @param setmealDtoPage
+     */
+    public void pageSetmeal(Page<Setmeal> setmealPage,Page<SetmealDto> setmealDtoPage,String name);
 }
