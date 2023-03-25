@@ -10,6 +10,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 /**
  * @title: SetmealController
  * @Author luozouchen
@@ -50,5 +52,18 @@ public class SetmealController {
         setmealService.pageSetmeal(setmealPage, setmealDtoPage, name);
         return R.success(setmealDtoPage);
 
+    }
+
+    /**
+     * 删除套餐
+     *
+     * @param ids
+     * @return
+     */
+    @DeleteMapping
+    public R<String> delete(@RequestParam List<Long> ids) {
+        log.info("ids:{}", ids);
+        setmealService.removeWithDish(ids);
+        return R.success("套餐数据删除成功");
     }
 }
