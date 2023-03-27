@@ -66,4 +66,21 @@ public class SetmealController {
         setmealService.removeWithDish(ids);
         return R.success("套餐数据删除成功");
     }
+
+    /**
+     * 根据条件查询套餐数据
+     *
+     * @param setmeal
+     * @return
+     */
+    @GetMapping("/list")
+    public R<List<Setmeal>> list( Setmeal setmeal) {
+        LambdaQueryWrapper<Setmeal> setmealLambdaQueryWrapper = new LambdaQueryWrapper<>();
+        setmealLambdaQueryWrapper.eq(setmeal.getCategoryId() != null, Setmeal::getCategoryId, setmeal.getCategoryId());
+        setmealLambdaQueryWrapper.eq(setmeal.getStatus() != null, Setmeal::getStatus, setmeal.getStatus());
+        setmealLambdaQueryWrapper.orderByDesc(Setmeal::getUpdateTime);
+        List<Setmeal> setmealList = setmealService.list(setmealLambdaQueryWrapper);
+        return R.success(setmealList);
+
+    }
 }
